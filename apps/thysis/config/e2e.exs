@@ -2,7 +2,7 @@ use Mix.Config
 
 import_config "dev.exs"
 
-server_port = System.get_env("THYSIS_PHOENIX_INTEGRATION_TEST_PORT") || 4017
+server_port = System.get_env("THYSIS_PHOENIX_PORT") || 4017
 front_end_port = System.get_env("THYSIS_FRONTEND_PORT") || "3017"
 
 config :thysis, sql_sandbox: true
