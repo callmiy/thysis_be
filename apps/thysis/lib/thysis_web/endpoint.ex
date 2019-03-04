@@ -18,7 +18,12 @@ defmodule ThysisWeb.Endpoint do
   )
 
   if Application.get_env(:thysis, :sql_sandbox) do
-    plug(Phoenix.Ecto.SQL.Sandbox)
+    plug(
+      Phoenix.Ecto.SQL.Sandbox,
+      at: "/sandbox",
+      header: "x-session-id",
+      repo: Thysis.Repo
+    )
   end
 
   socket("/socket", ThysisWeb.UserSocket)

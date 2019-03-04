@@ -31,6 +31,7 @@ defmodule Thysis.Mixfile do
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:dev), do: ["lib", "lib_dev"]
   defp elixirc_paths(:test), do: elixirc_paths(:dev) ++ ["test/support"]
+  defp elixirc_paths(:e2e), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
