@@ -113,4 +113,43 @@ defmodule ThysisWeb.User.Resolver do
         {:ok, "error"}
     end
   end
+
+  def benutzer_entferne(_, %{email: email}, %{context: %{current_user: user}}) do
+    Logger.info(fn ->
+      [
+        "Deleting user:\n",
+        "\tUser supplied arg email: ",
+        email,
+        "\tAuthenticated user email: ",
+        user.email
+      ]
+    end)
+
+    case email == user.email do
+      true ->
+        with {:ok, _} <- Accounts.delete_user(user) do
+          Logger.info(fn -> ["User deletion succeeds: ", email] end)
+          {:ok, true}
+        else
+          _ ->
+            Logger.error(fn -> ["User deletion fails: ", email] end)
+            {:error, "user deletion fails"}
+        end
+
+      _ ->
+        Logger.error(fn ->
+          ["User deletion fails - unauthorized: ", email]
+        end)
+
+        Resolver.unauthorized()
+    end
+  end
+
+  def benutzer_entferne(_root, %{email: email}, _info) do
+    Logger.error(fn ->
+      ["User deletion fails - unauthorized: ", email]
+    end)
+
+    Resolver.unauthorized()
+  end
 end

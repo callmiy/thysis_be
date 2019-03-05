@@ -86,6 +86,22 @@ defmodule Thysis.Accounts do
     |> Repo.one()
   end
 
+  @doc """
+  Deletes a User.
+
+  ## Examples
+
+      iex> delete_user(user)
+      {:ok, %User{}}
+
+      iex> delete_user(user)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_user(%User{} = user) do
+    Repo.delete(user)
+  end
+
   ########################### CREDENTIAL ##################################
   @doc """
   Gets a single credential.

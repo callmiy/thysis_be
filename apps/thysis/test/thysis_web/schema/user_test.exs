@@ -316,4 +316,56 @@ defmodule Thysis.Schema.UserTest do
       refute expiry_time == nil
     end
   end
+
+  describe "Benutzer entferne" do
+    test "erfolgreich" do
+      %{email: email} = user = RegFactory.insert()
+
+      assert {:ok,
+              %{
+                data: %{
+                  "benutzerEntferne" => true
+                }
+              }} =
+               Absinthe.run(
+                 Query.benutzer_entferne(),
+                 Schema,
+                 variables: %{"email" => email},
+                 context: %{current_user: user}
+               )
+    end
+
+    test "schlagt fehl wenn gitb es kein Benutzer" do
+      assert {:ok,
+              %{
+                errors: [
+                  %{
+                    message: "Unauthorized"
+                  }
+                ]
+              }} =
+               Absinthe.run(
+                 Query.benutzer_entferne(),
+                 Schema,
+                 variables: %{"email" => "a@b.com"}
+               )
+    end
+
+    test "schlagt fehl wenn BenutzerEmail und EingebenEmail nicht gleich" do
+      assert {:ok,
+              %{
+                errors: [
+                  %{
+                    message: "Unauthorized"
+                  }
+                ]
+              }} =
+               Absinthe.run(
+                 Query.benutzer_entferne(),
+                 Schema,
+                 variables: %{"email" => "a@b.com"},
+                 context: %{current_user: %{email: "b@b.com"}}
+               )
+    end
+  end
 end

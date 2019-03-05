@@ -69,4 +69,12 @@ defmodule ThysisWeb.Query.User do
       }
     """
   end
+
+  def benutzer_entferne do
+    """
+      mutation BenutzerEntferne($email: String!) {
+        benutzerEntferne(email: $email)
+      }
+    """
+  end
 end

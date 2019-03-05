@@ -74,22 +74,6 @@ defmodule Thysis.Accounts.UserApi do
   end
 
   @doc """
-  Deletes a User.
-
-  ## Examples
-
-      iex> delete_(user)
-      {:ok, %User{}}
-
-      iex> delete_(user)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_(%User{} = user) do
-    Repo.delete(user)
-  end
-
-  @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.
 
   ## Examples
