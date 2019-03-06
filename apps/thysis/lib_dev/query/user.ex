@@ -77,4 +77,12 @@ defmodule ThysisWeb.Query.User do
       }
     """
   end
+
+  def alle_benutzer_entferne do
+    """
+      mutation AlleBenutzerEntferne {
+        alleBenutzerEntferne
+      }
+    """
+  end
 end

@@ -102,6 +102,8 @@ defmodule Thysis.Accounts do
     Repo.delete(user)
   end
 
+  def delete_all_users(), do: Repo.delete_all(User)
+
   ########################### CREDENTIAL ##################################
   @doc """
   Gets a single credential.

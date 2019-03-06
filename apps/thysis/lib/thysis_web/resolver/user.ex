@@ -152,4 +152,42 @@ defmodule ThysisWeb.User.Resolver do
 
     Resolver.unauthorized()
   end
+
+  def alle_benutzer_entferne(_root, _arg, %{context: %{current_user: user}}) do
+    Logger.info(fn ->
+      [
+        "deleting all users requested by: ",
+        user.email
+      ]
+    end)
+
+    with {_, nil} <- Accounts.delete_all_users() do
+      Logger.info(fn ->
+        [
+          "deleting all users successful"
+        ]
+      end)
+
+      {:ok, true}
+    else
+      _ ->
+        Logger.error(fn ->
+          [
+            "deleting all users fail"
+          ]
+        end)
+
+        {:error, "unable to delete all users"}
+    end
+  end
+
+  def alle_benutzer_entferne(_root, _arg, _info) do
+    Logger.error(fn ->
+      [
+        "deleting all users fail: you are not authenticated"
+      ]
+    end)
+
+    Resolver.unauthorized()
+  end
 end

@@ -126,6 +126,10 @@ defmodule ThysisWeb.Schema.User do
       arg(:email, non_null(:string))
       resolve(&Resolver.benutzer_entferne/3)
     end
+
+    field :alle_benutzer_entferne, :boolean do
+      resolve(&Resolver.alle_benutzer_entferne/3)
+    end
   end
 
   @desc "Queries allowed on User object"

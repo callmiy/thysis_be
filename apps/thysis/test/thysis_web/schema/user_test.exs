@@ -370,4 +370,35 @@ defmodule Thysis.Schema.UserTest do
                )
     end
   end
+
+  describe "Alle Benutzer entferne" do
+    test "erfolgreich" do
+      assert {:ok,
+              %{
+                data: %{
+                  "alleBenutzerEntferne" => true
+                }
+              }} =
+               Absinthe.run(
+                 Query.alle_benutzer_entferne(),
+                 Schema,
+                 context: %{current_user: RegFactory.insert()}
+               )
+    end
+
+    test "schlagt fehl wenn gitb es kein Benutzer" do
+      assert {:ok,
+              %{
+                errors: [
+                  %{
+                    message: "Unauthorized"
+                  }
+                ]
+              }} =
+               Absinthe.run(
+                 Query.alle_benutzer_entferne(),
+                 Schema
+               )
+    end
+  end
 end
