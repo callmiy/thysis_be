@@ -5,6 +5,8 @@ defmodule ThysisWeb.Schema.ProjectTest do
   alias ThysisWeb.Schema
   alias ThysisWeb.Query.Project, as: Query
 
+  @moduletag :db
+
   describe "Mutation" do
     test "creating a project succeeds" do
       %{user: user} = attrs = Factory.params_with_assoc()

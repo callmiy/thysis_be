@@ -10,6 +10,8 @@ defmodule ThysisWeb.SourceSchemaTest do
   alias Thysis.Factory.Source, as: Factory
   alias Thysis.Factory.SourceType, as: SourceTypeFactory
 
+  @moduletag :db
+
   describe "query" do
     # @tag :skip
     test "get all sources for project does not get other projects succeeds" do

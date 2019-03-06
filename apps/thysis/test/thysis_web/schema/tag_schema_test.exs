@@ -5,6 +5,8 @@ defmodule ThysisWeb.TagSchemaTest do
   alias Thysis.Tag
   alias Thysis.Factory.Tag, as: Factory
 
+  @moduletag :db
+
   describe "query" do
     test "get tag by id" do
       %Tag{id: id} = Factory.insert()

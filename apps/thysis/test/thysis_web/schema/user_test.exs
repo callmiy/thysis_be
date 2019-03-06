@@ -10,6 +10,8 @@ defmodule Thysis.Schema.UserTest do
   alias Thysis.Factory.Project, as: ProjectFactory
   alias Thysis.Accounts
 
+  @moduletag :db
+
   describe "mutation" do
     # @tag :skip
     test "registers user succeeds" do

@@ -8,6 +8,8 @@ defmodule ThysisWeb.AuthorSchemaTest do
   alias Thysis.Factory.Project, as: ProjectFactory
   alias Thysis.Factory.Registration, as: RegFactory
 
+  @moduletag :db
+
   describe "query" do
     # @tag :skip
     test "get author by id" do

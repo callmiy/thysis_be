@@ -6,6 +6,8 @@ defmodule ThysisWeb.SourceTypeSchemaTest do
   alias Thysis.Factory.SourceType, as: Factory
   alias Thysis.Factory.Registration, as: RegFactory
 
+  @moduletag :db
+
   describe "query" do
     test "get source type by id" do
       user = RegFactory.insert()

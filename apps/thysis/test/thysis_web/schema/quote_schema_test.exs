@@ -9,6 +9,8 @@ defmodule Thysis.QuoteSchemaTest do
   alias Thysis.Factory.Tag, as: TagFactory
   alias Thysis.Factory.Author, as: AuthorFactory
 
+  @moduletag :db
+
   describe "mutation" do
     # @tag :skip
     test "create quote succeeds" do
